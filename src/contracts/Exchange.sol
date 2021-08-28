@@ -18,6 +18,10 @@ contract Exchange {
         feePercent = _feePercent;
     }
 
+    function() external {
+        revert();
+    }
+
     function depositEther() payable public {
         tokens[ETHER][msg.sender] = tokens[ETHER][msg.sender].add(msg.value);
         emit Deposit(ETHER, msg.sender, msg.value, tokens[ETHER][msg.sender]);

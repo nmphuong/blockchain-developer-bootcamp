@@ -14,7 +14,7 @@ contract('Token', (accounts) => {
     describe('deployment', () => {
         it('tracks the name', async () => {
             const result = await token.name()
-            result.should.equal('My Name')
+            result.should.equal('Phuong Token')
             console.log('name public: ', result)
         })
     })

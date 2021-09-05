@@ -1,4 +1,5 @@
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.4.22 <0.8.0;
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 
 contract Token {

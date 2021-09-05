@@ -1,5 +1,18 @@
 const Token = aftifacts.require("Token")
 const Exchange = aftifacts.require("Exchange")
+
+const ETHER_ADDRESS = '0x0000000000000000000000000000000000000000'
+const ether = (n) => {
+    return new web3.utils.BN(
+        web3.utils.toWei(n.toString(), 'ether')
+    )
+}
+const tokens = (n) => ether(n)
+const wait = (seconds) => {
+    const milliseconds = seconds * 1000
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
 module.exports = async function(callback) {
     try {
         const accounts = await Web3.eth.getAccounts()
@@ -66,6 +79,18 @@ module.exports = async function(callback) {
         console.log(`Filled order from ${user1}`)
 
         await wait(1)
+
+        for(let i = 0; i <= 10; i++) {
+            result = await exchange.makeOrder(token.address, tokens(10 * i), ETHER_ADDRESS, ether(0.01), { from: user1 })
+            console.log(`Made order from ${user1}`)
+            await wait(1)
+        }
+
+        for(let i = 0; i <= 10; i++) {
+            result = await exchange.makeOrder(ETHER_ADDRESS, tokens(0.01), tokens.address, ether(10 * i), { from: user2 })
+            console.log(`Made order from ${user2}`)
+            await wait(1)
+        }
 
     } catch (error) {
         console.log(error)

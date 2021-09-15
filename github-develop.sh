@@ -1,3 +1,3 @@
 git add .
-git commit -a -m "script seed exchange"
+git commit -a -m "Attendance"
 git push origin develop
